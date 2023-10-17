@@ -7,7 +7,7 @@ function sleep(ms) {
 
 // Simulate reading from a text file
 const fps = "15.0"; 
-const filename = "lagtrain";
+const filename = "static/lagtrain";
 let data = null;
 
 async function load() {
@@ -24,12 +24,13 @@ async function load() {
 async function processZip() {
     let o = 1;
     for (let i in data) {
+        console.log(`[+] Displaying Frame # ${i} / ${data.length} \n Framerate: ${fps}`);
         i = data[i]
         i = i.replace(/\n/g, "<br>");
         i = i.replace(/ /g, "&nbsp;&nbsp;");
-        document.getElementById("main").innerHTML = i;
+        document.getElementById("main-animation").innerHTML = i;
         if (o === 1) {
-            window.location.href = window.location.search + "#main";
+            window.location.href = window.location.search + "#main-animation";
             o = 0;
         };
         await sleep(1000 / parseFloat(fps));
